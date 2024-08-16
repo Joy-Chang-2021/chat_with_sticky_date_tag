@@ -18,6 +18,11 @@ export default function ChakraProvider({ children }) {
 
 const theme = extendTheme({
   components: {
+    Heading: {
+      baseStyle: {
+        cursor: 'default',
+      },
+    },
     Text: {
       baseStyle: {
         cursor: 'default',
