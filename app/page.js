@@ -10,7 +10,7 @@ import {
   Textarea,
   Heading,
 } from '@chakra-ui/react';
-import Content from '@/app/_components/content';
+import ChatContent from '@/app/_components/chat-content';
 
 export default function Home() {
   const textareaHeight = (e) => {
@@ -27,6 +27,7 @@ export default function Home() {
       <Card
         w="800px"
         h="600px"
+        pos="relative"
         borderRadius="15px"
         overflow="hidden"
       >
@@ -40,12 +41,9 @@ export default function Home() {
             CHAT ROOM
           </Heading>
         </CardHeader>
-        <CardBody
-          bgGradient="linear(to-b, #D6E1C7, #BDE1D5)"
-          overflowY="auto"
-        >
-          <Content />
-        </CardBody>
+
+        <ChatContent />
+
         <CardFooter bgColor="#748B83">
           <Textarea
             resize="none"
