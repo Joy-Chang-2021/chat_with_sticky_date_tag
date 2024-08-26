@@ -1,12 +1,9 @@
 'use client';
 import {
-  Box,
   Center,
   Card,
   CardHeader,
-  CardBody,
   CardFooter,
-  Text,
   Textarea,
   Heading,
 } from '@chakra-ui/react';
@@ -26,7 +23,7 @@ export default function Home() {
     >
       <Card
         w="800px"
-        h="600px"
+        h={{ base: '100vh', md: '600px' }}
         pos="relative"
         borderRadius="15px"
         overflow="hidden"
@@ -46,6 +43,7 @@ export default function Home() {
 
         <CardFooter bgColor="#748B83">
           <Textarea
+            placeholder="彈性高度為 8 行文字"
             resize="none"
             bgColor="#d6e0c980"
             _focus={{ bgColor: '#D6E0C9' }}

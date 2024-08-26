@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# chat room with sticky date
 
-## Getting Started
+### [Github Page Demo](https://joy-chang-2021.github.io/chat_with_sticky_date_tag)
 
-First, run the development server:
+1. The date tag sticks to the top of the screen and updates as the user scrolls.
+2. The input area has a flexible height that adjusts based on the content.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![cover](/public/cover.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### core setting for sticky date tag
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. set `position: relative` on the container
+2. use one `position: absolute` element for the sticky date tag  
+   and regular tags for the daily date tags
+3. hide the default scrollbar to prevent small width discrepancies that might cause the sticky and regular date tags to be misaligned  
+   `scrollbarWidth: 'none'`  
+   `-ms-overflow-style: 'none'`  
+   `::-webkit-scrollbar: { display: 'none' }`
+4. select each regular date DOM element, monitor its position, and when it reaches a certain point, update the sticky date tag and hide the regular date tag  
+   `DOM.getBoundingClientRect()`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### core setting for textarea with flexible height
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Set the default height using inline style  
+   `height: '40px'`
+2. On the change event, reset the height to the default value and then adjust it based on the content  
+   `el.style.height = '40px';`  
+   reset the element's height and allows the browser to recalculate the actual content height (scrollHeight)  
+   `` el.style.height = `${el.scrollHeight + 5}px`; ``
+   set the element's height to match the content's height.  
+   extra 5px accounts for additional padding
